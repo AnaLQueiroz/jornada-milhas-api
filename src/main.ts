@@ -1,19 +1,7 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+import { AppModule } from './app/app.module';
 
-  const config = new DocumentBuilder()
-    .setTitle('Jornada Milhas')
-    .setDescription('Jornada  Milhas API')
-    .setVersion('1.0')
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
-  app.enableCors();
 
-  await app.listen(8080);
-}
-bootstrap();
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
